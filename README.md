@@ -6,7 +6,6 @@ This is a simple code that takes in the RESTFul PokeAPI, that is available onlin
 Versions:
 * Ruby version ``` 3.2.4 ```
 * Rails version ``` 7.1.3 ```
-* SQLite version ``` 1.4 ```
 
 Other Gems
 * Dotenv-rails

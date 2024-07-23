@@ -47,3 +47,5 @@ end
 
 gem "dotenv-rails", groups: [:development, :test]
 gem "rest-client"
+
+gem 'rspec-rails', '~> 5.0.0'

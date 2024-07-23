@@ -1,190 +1,164 @@
-require "rest-client"
 require "dotenv/load"
+require_relative "request"
 
 module Pokeapi
   class Client
     def initialize
-      @base_url = ENV['POKEAPI_BASE_URL']
+      @request = Pokeapi::Request.new
     end
 
-    # Berry list
-    def get_berry_list
-      response = RestClient.get("#{@base_url}/berry")
-      JSON.parse(response.body)
+    def fetch_pokemon_list
+      @request.fetch_pokemon_list
     end
 
-    def get_berry(name_or_id)
-      response = RestClient.get("#{@base_url}/berry/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_pokemon(name_or_id)
+      @request.fetch_pokemon(name_or_id)
     end
 
-    def get_berry_flavor_list
-      response = RestClient.get("#{@base_url}/berry-flavor")
-      JSON.parse(response.body)
+    # Berry methods
+
+    def fetch_berry_list
+      @request.fetch_berry_list
     end
 
-    def get_berry_flavor(name_or_id)
-      response = RestClient.get("#{@base_url}/berry-flavor/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_berry(name_or_id)
+      @request.fetch_berry(name_or_id)
     end
 
-    # Contest list
-    def get_contest_list
-      response = RestClient.get("#{@base_url}/contest-type")
-      JSON.parse(response.body)
+    def fetch_berry_flavor_list
+      @request.fetch_berry_flavor_list
     end
 
-    def get_contest(name_or_id)
-      response = RestClient.get("#{@base_url}/contest-type/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_berry_flavor(name_or_id)
+      @request.fetch_berry_flavor(name_or_id)
     end
 
-    def get_contest_effects_list
-      response = RestClient.get("#{@base_url}/contest-effect")
-      JSON.parse(response.body)
+    # Contest methods
+
+    def fetch_contest_list
+      @request.fetch_contest_list
     end
 
-    def get_contest_effects(id)
-      response = RestClient.get("#{@base_url}/contest-effect/#{id}")
-      JSON.parse(response.body)
+    def fetch_contest(name_or_id)
+      @request.fetch_contest(name_or_id)
     end
 
-    # Encounters list
-    def get_encounter_list
-      response = RestClient.get("#{@base_url}/encounter-method")
-      JSON.parse(response.body)
+    def fetch_contest_effects_list
+      @request.fetch_contest_effects_list
     end
 
-    def get_encounter(name_or_id)
-      response = RestClient.get("#{@base_url}/encounter-method/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_contest_effects(id)
+      @request.fetch_contest_effects(id)
     end
 
-    def get_encounter_condition_list
-      response = RestClient.get("#{@base_url}/encounter-condition")
-      JSON.parse(response.body)
+    # Encounters methods
+
+    def fetch_encounter_list
+      @request.fetch_encounter_list
     end
 
-    def get_encounter_condition(name_or_id)
-      response = RestClient.get("#{@base_url}/encounter-condition/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_encounter(name_or_id)
+      @request.fetch_encounter(name_or_id)
     end
 
-    # Evolution list
-    def get_evolution_list
-      response = RestClient.get("#{@base_url}/evolution-chain")
-      JSON.parse(response.body)
+    def fetch_encounter_condition_list
+      @request.fetch_encounter_condition_list
     end
 
-    def get_evolution(id)
-      response = RestClient.get("#{@base_url}/evolution-chain/#{id}")
-      JSON.parse(response.body)
+    def fetch_encounter_condition(name_or_id)
+      @request.fetch_encounter_condition(name_or_id)
     end
 
-    def get_evolution_trigger_list
-      response = RestClient.get("#{@base_url}/evolution-trigger")
-      JSON.parse(response.body)
+    # Evolution methods
+
+    def fetch_evolution_list
+      @request.fetch_evolution_list
     end
 
-    def get_evolution_trigger(name_or_id)
-      response = RestClient.get("#{@base_url}/evolution-trigger/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_evolution(id)
+      @request.fetch_evolution(id)
     end
 
-    # Game generations
-    def get_generation_list
-      response = RestClient.get("#{@base_url}/generation")
-      JSON.parse(response.body)
+    def fetch_evolution_trigger_list
+      @request.fetch_evolution_trigger_list
     end
 
-    def get_generation(name_or_id)
-      response = RestClient.get("#{@base_url}/generation/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_evolution_trigger(name_or_id)
+      @request.fetch_evolution_trigger(name_or_id)
     end
 
-    def get_pokedex_list
-      response = RestClient.get("#{@base_url}/pokedex")
-      JSON.parse(response.body)
+    # Game Generation methods
+
+    def fetch_generation_list
+      @request.fetch_generation_list
     end
 
-    def get_pokedex(name_or_id)
-      response = RestClient.get("#{@base_url}/pokedex/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_generation(name_or_id)
+      @request.fetch_generation(name_or_id)
     end
 
-    # Items list
-    def get_item_list
-      response = RestClient.get("#{@base_url}/item")
-      JSON.parse(response.body)
+    def fetch_pokedex_list
+      @request.fetch_pokedex_list
     end
 
-    def get_item(name_or_id)
-      response = RestClient.get("#{@base_url}/item/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_pokedex(name_or_id)
+      @request.fetch_pokedex(name_or_id)
     end
 
-    def get_item_category_list
-      response = RestClient.get("#{@base_url}/item-category")
-      JSON.parse(response.body)
+    # Item methods
+
+    def fetch_item_list
+      @request.fetch_item_list
     end
 
-    def get_item_category(name_or_id)
-      response = RestClient.get("#{@base_url}/item-category/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_item(name_or_id)
+      @request.fetch_item(name_or_id)
     end
 
-    # Location list
-    def get_location_list
-      response = RestClient.get("#{@base_url}/location")
-      JSON.parse(response.body)
+    def fetch_item_category_list
+      @request.fetch_item_category_list
     end
 
-    def get_location(name_or_id)
-      response = RestClient.get("#{@base_url}/location/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_item_category(name_or_id)
+      @request.fetch_item_category(name_or_id)
     end
 
-    # Moves list
-    def get_move_list
-      response = RestClient.get("#{@base_url}/move")
-      JSON.parse(response.body)
+    # Location methods
+
+    def fetch_location_list
+      @request.fetch_location_list
     end
 
-    def get_move(name_or_id)
-      response = RestClient.get("#{@base_url}/move/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_location(name_or_id)
+      @request.fetch_location(name_or_id)
     end
 
-    # Pokemon Ability list
-    def get_ability_list
-      response = RestClient.get("#{@base_url}/ability")
-      JSON.parse(response.body)
+    # Move methods
+
+    def fetch_move_list
+      @request.fetch_move_list
     end
 
-    def get_ability(name_or_id)
-      response = RestClient.get("#{@base_url}/ability/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_move(name_or_id)
+      @request.fetch_move(name_or_id)
     end
 
-    def get_characteristic_list
-      response = RestClient.get("#{@base_url}/characteristic")
-      JSON.parse(response.body)
+    # Ability methods
+
+    def fetch_ability_list
+      @request.fetch_ability_list
     end
 
-    def get_characteristic(id)
-      response = RestClient.get("#{@base_url}/characteristic/#{id}")
-      JSON.parse(response.body)
+    def fetch_ability(name_or_id)
+      @request.fetch_ability(name_or_id)
     end
 
-    # Pokemon list
-    def get_pokemon_list
-      response = RestClient.get("#{@base_url}/pokemon")
-      JSON.parse(response.body)
+    def fetch_characteristic_list
+      @request.fetch_characteristic_list
     end
 
-    def get_pokemon(name_or_id)
-      response = RestClient.get("#{@base_url}/pokemon/#{name_or_id}")
-      JSON.parse(response.body)
+    def fetch_characteristic(id)
+      @request.fetch_characteristic(id)
     end
 
   end
