@@ -66,5 +66,5 @@ localhost/characteristic/[id]
 
 ```
 
-###Note:
+### Note:
 If you typed the wrong name, you may need to restart the server
