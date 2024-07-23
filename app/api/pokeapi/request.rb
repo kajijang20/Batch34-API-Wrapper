@@ -6,6 +6,13 @@ module Pokeapi
       @client = Pokeapi::Client.new
     end
 
+    def self.call(method_name, *args)
+      instance = new
+      instance.send(method_name, *args)
+    rescue StandardError => e
+      { error: e.message }
+    end
+
     def fetch_pokemon_list
       @client.get_pokemon_list
     end
@@ -158,6 +165,21 @@ module Pokeapi
 
     def fetch_characteristic(id)
       @client.get_characteristic(id)
+    end
+
+    # Error handling
+
+    private
+
+    def handle_response(response)
+      if response.is_a?(Hash) && response.key?(:error)
+        raise StandardError, response[:error]
+      elsif response.respond_to?(:success?) && !response.success?
+        error_class = Errors.map(response.code)
+        raise error_class, "API Error: #{response.code}"
+      else
+        response
+      end
     end
 
   end
